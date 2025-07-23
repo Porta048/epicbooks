@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MyNav from '../components/MyNav';
 import MyFooter from '../components/MyFooter';
 import Welcome from '../components/Welcome';
-import AllTheBooks from '../components/AllTheBooks';
+import BookList from '../components/BookList';
+import booksData from '../assets/fantasy.json';
 
 export const Route = createFileRoute('/')({  
   component: App,
@@ -15,7 +16,7 @@ function App() {
       <MyNav />
       <main className="flex-grow-1">
         <Welcome />
-        <AllTheBooks />
+        <BookList books={booksData} />
       </main>
       <MyFooter />
     </div>
