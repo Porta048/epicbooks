@@ -1,5 +1,4 @@
 import { Card } from 'react-bootstrap';
-import CommentArea from './CommentArea';
 
 interface Book {
   asin: string;
@@ -28,7 +27,6 @@ const SingleBook = ({ asin, title, img, selected, onSelect }: Book) => {
       <Card.Body>
         <Card.Title className="text-truncate fw-bold">{title}</Card.Title>
       </Card.Body>
-      {selected && <CommentArea asin={asin} />}
     </Card>
   );
 };

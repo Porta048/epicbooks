@@ -39,9 +39,11 @@ const CommentArea: React.FC<CommentAreaProps> = ({ asin }) => {
     }
   };
 
+  // componentDidUpdate equivalent - si attiva quando cambia asin
   useEffect(() => {
-    fetchComments();
-    // eslint-disable-next-line
+    if (asin) {
+      fetchComments();
+    }
   }, [asin]);
 
   const handleAddComment = () => {
