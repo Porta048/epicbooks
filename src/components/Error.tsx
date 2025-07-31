@@ -3,7 +3,10 @@ interface ErrorProps {
 }
 
 const Error = ({ message }: ErrorProps) => (
-  <div className="alert alert-danger text-center my-3">{message}</div>
+  <div className="error-message animate-fade-in">
+    <i className="bi bi-exclamation-triangle me-2"></i>
+    <strong>Errore:</strong> {message}
+  </div>
 );
 
 export default Error; 

@@ -35,19 +35,60 @@ const SingleComment: React.FC<SingleCommentProps> = ({ comment, onDelete }) => {
     }
   };
 
+  const renderStars = (rate: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <i 
+        key={i} 
+        className={`bi ${i < rate ? 'bi-star-fill' : 'bi-star'} stars`}
+      ></i>
+    ));
+  };
+
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center">
-      <span>
-        <strong>Voto:</strong> {comment.rate} <br />
-        {comment.comment}
-      </span>
-      <div>
-        <button className="btn btn-danger btn-sm" onClick={handleDelete} disabled={loading}>
-          {loading ? '...' : 'Elimina'}
-        </button>
-        {error && <span className="text-danger ms-2">{error}</span>}
+    <div className="comment-item animate-fade-in">
+      <div className="comment-rating">
+        <strong>Voto:</strong>
+        <div className="d-flex align-items-center">
+          {renderStars(comment.rate)}
+          <span className="ms-2 fw-bold text-primary">({comment.rate}/5)</span>
+        </div>
       </div>
-    </li>
+      
+      <div className="comment-text">
+        "{comment.comment}"
+      </div>
+      
+      <div className="comment-actions">
+        <small className="text-muted">
+          <i className="bi bi-clock me-1"></i>
+          Recensione recente
+        </small>
+        <button 
+          className="delete-btn" 
+          onClick={handleDelete} 
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <span className="loading-spinner me-2"></span>
+              Eliminando...
+            </>
+          ) : (
+            <>
+              <i className="bi bi-trash me-1"></i>
+              Elimina
+            </>
+          )}
+        </button>
+      </div>
+      
+      {error && (
+        <div className="error-message mt-2">
+          <i className="bi bi-exclamation-triangle me-2"></i>
+          {error}
+        </div>
+      )}
+    </div>
   );
 };
 

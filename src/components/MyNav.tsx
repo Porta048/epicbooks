@@ -2,18 +2,27 @@ import { Navbar, Nav, Container } from 'react-bootstrap';
 
 const MyNav = () => {
   return (
-    <Navbar bg="primary" variant="dark" expand="lg" className="shadow-sm sticky-top">
+    <Navbar className="navbar-custom" expand="lg" sticky="top">
       <Container>
-        <Navbar.Brand href="#" className="fw-bold">
-          <i className="bi bi-book me-2"></i>
+        <Navbar.Brand href="#" className="navbar-brand">
+          <i className="bi bi-book-half me-2"></i>
           EpicBooks
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="border-0" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="#" className="mx-2 fw-semibold">Home</Nav.Link>
-            <Nav.Link href="#" className="mx-2 fw-semibold">About</Nav.Link>
-            <Nav.Link href="#" className="mx-2 fw-semibold">Browse</Nav.Link>
+            <Nav.Link href="#" className="nav-link mx-3">
+              <i className="bi bi-house me-1"></i>
+              Home
+            </Nav.Link>
+            <Nav.Link href="#" className="nav-link mx-3">
+              <i className="bi bi-info-circle me-1"></i>
+              About
+            </Nav.Link>
+            <Nav.Link href="#" className="nav-link mx-3">
+              <i className="bi bi-search me-1"></i>
+              Browse
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

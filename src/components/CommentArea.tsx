@@ -58,7 +58,11 @@ const CommentArea: React.FC<CommentAreaProps> = ({ asin }) => {
   if (error) return <Error message={error} />;
 
   return (
-    <div className="mt-3">
+    <div className="animate-fade-in">
+      <h3 className="comments-title">
+        <i className="bi bi-chat-square-text me-2"></i>
+        Recensioni ({comments.length})
+      </h3>
       <CommentsList comments={comments} onDelete={handleDeleteComment} />
       <AddComment asin={asin} onAdd={handleAddComment} />
     </div>

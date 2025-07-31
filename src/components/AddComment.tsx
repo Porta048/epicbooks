@@ -39,29 +39,79 @@ const AddComment: React.FC<AddCommentProps> = ({ asin, onAdd }) => {
     }
   };
 
+  const renderStars = (rate: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <i 
+        key={i} 
+        className={`bi ${i < rate ? 'bi-star-fill' : 'bi-star'} stars`}
+        style={{ cursor: 'pointer', fontSize: '1.5rem' }}
+        onClick={() => setRate(i + 1)}
+      ></i>
+    ));
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="d-flex flex-column gap-2">
-      <textarea
-        className="form-control"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="Scrivi una recensione..."
-        required
-      />
-      <select
-        className="form-select w-auto"
-        value={rate}
-        onChange={(e) => setRate(Number(e.target.value))}
-      >
-        {[1, 2, 3, 4, 5].map((n) => (
-          <option key={n} value={n}>{n}</option>
-        ))}
-      </select>
-      <button className="btn btn-primary" type="submit" disabled={loading}>
-        {loading ? 'Invio...' : 'Aggiungi commento'}
-      </button>
-      {error && <div className="text-danger">{error}</div>}
-    </form>
+    <div className="add-comment-form animate-fade-in">
+      <h4 className="form-title">
+        <i className="bi bi-plus-circle me-2"></i>
+        Aggiungi una recensione
+      </h4>
+      
+      <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+        <div>
+          <label className="form-label fw-semibold">
+            <i className="bi bi-chat-text me-2"></i>
+            La tua recensione
+          </label>
+          <textarea
+            className="form-control"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            placeholder="Condividi la tua esperienza con questo libro..."
+            required
+            rows={4}
+          />
+        </div>
+        
+        <div>
+          <label className="form-label fw-semibold">
+            <i className="bi bi-star me-2"></i>
+            Voto
+          </label>
+          <div className="d-flex align-items-center gap-3">
+            <div className="stars-container">
+              {renderStars(rate)}
+            </div>
+            <span className="fw-bold text-primary">({rate}/5)</span>
+          </div>
+        </div>
+        
+        <button 
+          className="submit-btn" 
+          type="submit" 
+          disabled={loading || !comment.trim()}
+        >
+          {loading ? (
+            <>
+              <span className="loading-spinner me-2"></span>
+              Invio in corso...
+            </>
+          ) : (
+            <>
+              <i className="bi bi-send me-2"></i>
+              Pubblica recensione
+            </>
+          )}
+        </button>
+        
+        {error && (
+          <div className="error-message">
+            <i className="bi bi-exclamation-triangle me-2"></i>
+            {error}
+          </div>
+        )}
+      </form>
+    </div>
   );
 };
 

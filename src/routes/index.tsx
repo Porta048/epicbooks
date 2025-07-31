@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import '../custom.css';
 import MyNav from '../components/MyNav';
 import MyFooter from '../components/MyFooter';
 import Welcome from '../components/Welcome';
